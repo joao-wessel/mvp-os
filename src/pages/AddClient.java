@@ -266,9 +266,14 @@ public class AddClient extends javax.swing.JInternalFrame {
             }
         } else {
             clientSelected.setNome(nome);
-            clientSelected.setBairro(bairro);
+            clientSelected.setCpf(cpf);
+            clientSelected.setTelefone(telefone);
             clientSelected.setCep(cep);
+            clientSelected.setEstado(estado);
+            clientSelected.setRua(rua);
             clientSelected.setNumero(numero);
+            clientSelected.setBairro(bairro);
+            clientSelected.setCidade(cidade);
         }
         clientSelected = null;
     }//GEN-LAST:event_btnCadastroActionPerformed

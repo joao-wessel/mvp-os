@@ -1,18 +1,22 @@
 package pages;
 
 import dao.PsDao;
+import entities.Client;
 import entities.Ps;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class AddPs extends javax.swing.JInternalFrame {
 
-    private final PsDao psDao;
+    private PsDao psDao = new PsDao();
+    List<Ps> psList;
+    private Ps psSelected;
 
     public AddPs() {
         initComponents();
-        this.psDao = new PsDao();
     }
 
     @SuppressWarnings("unchecked")
@@ -187,22 +191,84 @@ public class AddPs extends javax.swing.JInternalFrame {
         String bairro = inputTxtBairro.getText();
         String cidade = inputTxtCidade.getText();
         int numero = Integer.parseInt(inputTxtNumero.getText());
-        Ps ps = new Ps(nome, cpf, telefone, cep, rua, numero, bairro, cidade, estado);
-        try {
-            this.psDao.create(ps);
-        } catch (SQLException ex) {
-            Logger.getLogger(AddPs.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        inputTxtName.setText("");
-        inputTxtCpf.setText("");
-        inputTxtTelefone.setText("");
-        inputTxtCep.setText("");
-        inputTxtEstado.setText("");
-        inputTxtRua.setText("");
-        inputTxtNumero.setText("");
-        inputTxtBairro.setText("");
-        inputTxtCidade.setText("");
 
+        try {
+            numero = Integer.parseInt(inputTxtNumero.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Número não informado.", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (nome.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Informe o nome.", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (cpf.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Informe o CPF.", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (telefone.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Informe o telefone.", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (cep.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Informe o CEP.", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (estado.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Informe o estado.", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (rua.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Informe a rua.", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (bairro.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Informe o bairro.", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (cidade.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Informe o bairro.", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (psSelected == null) {
+            Ps ps = new Ps(nome, cpf, telefone, cep, rua, numero, bairro, cidade, estado);
+            try {
+                psDao.create(ps);
+                JOptionPane.showMessageDialog(null, "Dados cadastrados.");
+                inputTxtName.setText("");
+                inputTxtCpf.setText("");
+                inputTxtTelefone.setText("");
+                inputTxtCep.setText("");
+                inputTxtEstado.setText("");
+                inputTxtRua.setText("");
+                inputTxtNumero.setText("");
+                inputTxtBairro.setText("");
+                inputTxtCidade.setText("");
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Erro ao cadastrar.", "Erro!", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            psSelected.setNome(nome);
+            psSelected.setCpf(cpf);
+            psSelected.setTelefone(telefone);
+            psSelected.setCep(cep);
+            psSelected.setEstado(estado);
+            psSelected.setRua(rua);
+            psSelected.setNumero(numero);
+            psSelected.setBairro(bairro);
+            psSelected.setCidade(cidade);
+        }
+        psSelected = null;
     }//GEN-LAST:event_buttonCadastrarActionPerformed
 
 
