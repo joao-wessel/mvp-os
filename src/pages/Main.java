@@ -23,8 +23,6 @@ public class Main extends javax.swing.JFrame {
     public Main(User usuario) {
         initComponents();
         this.setUsuario(usuario);
-//      this.clienteDao = new ClientesDao();
-        System.out.print(this.usuario.getCargo());
         if (this.usuario.getCargo().equals("funcionario")) {
             this.menuRelatorios.setEnabled(false);
         }
@@ -42,25 +40,27 @@ public class Main extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         cadastrarPS = new javax.swing.JMenuItem();
         listarPS = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        menuOs = new javax.swing.JMenu();
+        cadastrarOs = new javax.swing.JMenuItem();
+        listarOs = new javax.swing.JMenuItem();
         menuRelatorios = new javax.swing.JMenu();
         menuRelatorios_Vendas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistemas de Pedidos");
-        setResizable(false);
 
+        desktop.setBackground(new java.awt.Color(51, 51, 51));
         desktop.setPreferredSize(new java.awt.Dimension(750, 500));
 
         javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop);
         desktop.setLayout(desktopLayout);
         desktopLayout.setHorizontalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGap(0, 990, Short.MAX_VALUE)
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 777, Short.MAX_VALUE)
         );
 
         menuCliente.setText("Clientes");
@@ -70,7 +70,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        menuCliente_cadastrar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        menuCliente_cadastrar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuCliente_cadastrar.setText("Cadastrar");
         menuCliente_cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,7 +79,7 @@ public class Main extends javax.swing.JFrame {
         });
         menuCliente.add(menuCliente_cadastrar);
 
-        menuCliente_Listar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        menuCliente_Listar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuCliente_Listar.setText("Listar");
         menuCliente_Listar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,8 +112,22 @@ public class Main extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Ordens de Serviço");
-        jMenuBar1.add(jMenu2);
+        menuOs.setText("Ordens de Serviço");
+
+        cadastrarOs.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        cadastrarOs.setText("Cadastrar");
+        cadastrarOs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarOsActionPerformed(evt);
+            }
+        });
+        menuOs.add(cadastrarOs);
+
+        listarOs.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        listarOs.setText("Listar");
+        menuOs.add(listarOs);
+
+        jMenuBar1.add(menuOs);
 
         menuRelatorios.setText("Relatórios");
 
@@ -134,14 +148,14 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(desktop, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(desktop, javax.swing.GroupLayout.DEFAULT_SIZE, 777, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(768, 531));
+        setSize(new java.awt.Dimension(1006, 808));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -181,6 +195,16 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_listarPSActionPerformed
 
+    private void cadastrarOsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarOsActionPerformed
+        try {
+            AddOs telaCadastroOs = new AddOs(this.usuario);
+            telaCadastroOs.setVisible(true);
+            desktop.add(telaCadastroOs);
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cadastrarOsActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -216,15 +240,17 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem cadastrarOs;
     private javax.swing.JMenuItem cadastrarPS;
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem listarOs;
     private javax.swing.JMenuItem listarPS;
     private javax.swing.JMenu menuCliente;
     private javax.swing.JMenuItem menuCliente_Listar;
     private javax.swing.JMenuItem menuCliente_cadastrar;
+    private javax.swing.JMenu menuOs;
     private javax.swing.JMenu menuRelatorios;
     private javax.swing.JMenuItem menuRelatorios_Vendas;
     // End of variables declaration//GEN-END:variables

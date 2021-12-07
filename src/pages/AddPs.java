@@ -1,12 +1,9 @@
 package pages;
 
 import dao.PsDao;
-import entities.Client;
 import entities.Ps;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class AddPs extends javax.swing.JInternalFrame {

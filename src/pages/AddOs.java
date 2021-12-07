@@ -1,9 +1,91 @@
 package pages;
 
-public class AddOs extends javax.swing.JInternalFrame {
+import dao.ClientDao;
+import dao.OsDao;
+import dao.PsDao;
+import entities.Client;
+import entities.Os;
+import entities.Ps;
+import entities.User;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
-    public AddOs() {
+public final class AddOs extends javax.swing.JInternalFrame {
+
+    private OsDao osDao = new OsDao();
+    private List<Os> osList;
+    private Os osSelected;
+    private int userId;
+
+    private ClientDao clientDao = new ClientDao();
+    private List<Client> clients;
+    private Client clientSelected;
+
+    private PsDao psDao = new PsDao();
+    private List<Ps> psList;
+    private Ps psSelected;
+
+    public AddOs(User usuario) throws SQLException {
         initComponents();
+        this.userId = usuario.getId();
+        atualizarListaClientes();
+        atualizarListaPs();
+    }
+
+    public void atualizarListaClientes() throws SQLException {
+        ClientDao clientesDao = new ClientDao();
+        List<Client> clientesList = clientesDao.read();
+        DefaultTableModel model = (DefaultTableModel) clientsTable.getModel();
+        model.setNumRows(0);
+
+        for (int i = 0; i < clientesList.size(); i++) {
+            Client cliente = clientesList.get(i);
+            model.addRow(new Object[]{cliente.getNome(), cliente.getCpf(), cliente.getTelefone(), cliente.getCep(), cliente.getRua(), cliente.getNumero(), cliente.getBairro(), cliente.getCidade(), cliente.getEstado(),});
+        }
+        this.clients = clientesList;
+    }
+
+    public void searchTableClients() {
+        try {
+            this.clients = this.clientDao.searchByName(searchClient.getText());
+            DefaultTableModel model = (DefaultTableModel) clientsTable.getModel();
+            model.setNumRows(0);
+            for (int i = 0; i < clients.size(); i++) {
+                Client cliente = clients.get(i);
+                model.addRow(new Object[]{cliente.getNome(), cliente.getCpf(), cliente.getTelefone(), cliente.getCep(), cliente.getRua(), cliente.getNumero(), cliente.getBairro(), cliente.getCidade(), cliente.getEstado(),});
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void atualizarListaPs() throws SQLException {
+        PsDao psDao = new PsDao();
+        List<Ps> psLista = psDao.read();
+        DefaultTableModel model = (DefaultTableModel) psTable.getModel();
+        model.setNumRows(0);
+
+        for (int i = 0; i < psLista.size(); i++) {
+            Ps ps = psLista.get(i);
+            model.addRow(new Object[]{ps.getNome(), ps.getCpf(), ps.getTelefone(), ps.getCep(), ps.getRua(), ps.getNumero(), ps.getBairro(), ps.getCidade(), ps.getEstado(),});
+        }
+        this.psList = psLista;
+    }
+
+    public void searchTablePs() {
+        try {
+            this.psList = this.psDao.searchByName(searchPs.getText());
+            DefaultTableModel model = (DefaultTableModel) psTable.getModel();
+            model.setNumRows(0);
+            for (int i = 0; i < psList.size(); i++) {
+                Ps ps = psList.get(i);
+                model.addRow(new Object[]{ps.getNome(), ps.getCpf(), ps.getTelefone(), ps.getCep(), ps.getRua(), ps.getNumero(), ps.getBairro(), ps.getCidade(), ps.getEstado(),});
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -12,28 +94,35 @@ public class AddOs extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         searchClient = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnSearchClient = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         clientsTable = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        btnSearchPs = new javax.swing.JButton();
+        searchPs = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         psTable = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        btnCadastro = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         inputTextData = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         inputTextDescricao = new javax.swing.JTextField();
         inputTextValor = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        inputTextNumber = new javax.swing.JTextField();
 
         setTitle("Cadastro de O.S");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cliente"));
 
-        jButton1.setText("Pesquisar");
+        btnSearchClient.setText("Pesquisar");
+        btnSearchClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchClientActionPerformed(evt);
+            }
+        });
 
         clientsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -63,9 +152,9 @@ public class AddOs extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnSearchClient)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(searchClient)))
                 .addContainerGap())
@@ -76,15 +165,20 @@ public class AddOs extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnSearchClient))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Prestador De Seviço"));
 
-        jButton2.setText("Pesquisar");
+        btnSearchPs.setText("Pesquisar");
+        btnSearchPs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchPsActionPerformed(evt);
+            }
+        });
 
         psTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -115,10 +209,10 @@ public class AddOs extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(btnSearchPs)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE))
+                        .addComponent(searchPs))
+                    .addComponent(jScrollPane3))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -126,16 +220,21 @@ public class AddOs extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSearchPs)
+                    .addComponent(searchPs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("O.S"));
 
-        jButton3.setText("Cadastrar");
+        btnCadastro.setText("Cadastrar");
+        btnCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastroActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Data");
 
@@ -147,33 +246,62 @@ public class AddOs extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Descrição");
 
+        inputTextDescricao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputTextDescricaoActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("Valor");
+
+        jLabel4.setText("N° Solicitação");
+
+        inputTextNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputTextNumberActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton3)
-                        .addComponent(inputTextDescricao, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnCadastro))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(inputTextData)
+                                    .addComponent(inputTextValor))))
+                        .addGap(40, 40, 40))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(inputTextDescricao, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel3))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(inputTextData, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                                .addComponent(inputTextValor)))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                                .addComponent(jLabel2)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(inputTextNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 20, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(inputTextNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(inputTextData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -183,10 +311,10 @@ public class AddOs extends javax.swing.JInternalFrame {
                     .addComponent(inputTextValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputTextDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCadastro)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -195,18 +323,19 @@ public class AddOs extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -217,25 +346,114 @@ public class AddOs extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputTextDataActionPerformed
 
+    private void inputTextDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTextDescricaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputTextDescricaoActionPerformed
+
+    private void btnSearchClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchClientActionPerformed
+        searchTableClients();
+    }//GEN-LAST:event_btnSearchClientActionPerformed
+
+    private void btnSearchPsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchPsActionPerformed
+        searchTablePs();
+    }//GEN-LAST:event_btnSearchPsActionPerformed
+
+    private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
+        int clientLine = clientsTable.getSelectedRow();
+        int psLine = psTable.getSelectedRow();
+
+        int clientLineSelected = this.clients.get(clientLine).getId();
+        int psLineSelected = this.psList.get(psLine).getId();
+
+        String number = inputTextNumber.getText();
+        int user_id = userId;
+        String date = inputTextData.getText();
+        Double amount = Double.parseDouble(inputTextValor.getText());
+        int client_id = clientLineSelected;
+        int ps_id = psLineSelected;
+        String descricao = inputTextDescricao.getText();
+
+        if (number.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Informe o número da solicitação.", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (date.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Informe a data.", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (amount == 0) {
+            JOptionPane.showMessageDialog(null, "Selecione o cliente.", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (client_id == 0) {
+            JOptionPane.showMessageDialog(null, "Selecione o cliente.", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (ps_id == 0) {
+            JOptionPane.showMessageDialog(null, "Selecione o prestador de serviço.", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (descricao.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Informe a descrição da ordem.", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (osSelected == null) {
+            Os os = new Os(number, user_id, date, amount, client_id, ps_id, descricao);
+            try {
+                osDao.create(os);
+                JOptionPane.showMessageDialog(null, "Ordem de serviço cadastrada.");
+                inputTextNumber.setText("");
+                inputTextData.setText("");
+                inputTextValor.setText("");
+                inputTextDescricao.setText("");
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Erro ao cadastrar ordem de serviço.", "Erro!", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            osSelected.setNumber(number);
+            osSelected.setUser_id(user_id);
+            osSelected.setDate(date);
+            osSelected.setAmount(amount);
+            osSelected.setClient_id(client_id);
+            osSelected.setPs_id(ps_id);
+            osSelected.setDescricao(descricao);
+        }
+        osSelected = null;
+    }//GEN-LAST:event_btnCadastroActionPerformed
+
+    private void inputTextNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTextNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputTextNumberActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCadastro;
+    private javax.swing.JButton btnSearchClient;
+    private javax.swing.JButton btnSearchPs;
     private javax.swing.JTable clientsTable;
     private javax.swing.JTextField inputTextData;
     private javax.swing.JTextField inputTextDescricao;
+    private javax.swing.JTextField inputTextNumber;
     private javax.swing.JTextField inputTextValor;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTable psTable;
     private javax.swing.JTextField searchClient;
+    private javax.swing.JTextField searchPs;
     // End of variables declaration//GEN-END:variables
 }

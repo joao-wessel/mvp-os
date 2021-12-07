@@ -1,6 +1,5 @@
 package entities;
 
-import java.util.Date;
 import java.util.Objects;
 
 public class Os {
@@ -8,7 +7,8 @@ public class Os {
     private int id;
     private String number;
     private int user_id;
-    private Date date;
+    private String date;
+    private Double amount;
     private int client_id;
     private int ps_id;
     private String descricao;
@@ -16,20 +16,22 @@ public class Os {
     public Os() {
     }
 
-    public Os(String number, int user_id, Date date, int client_id, int ps_id, String descricao) {
+    public Os(String number, int user_id, String date, Double amount, int client_id, int ps_id, String descricao) {
         this.number = number;
         this.user_id = user_id;
         this.date = date;
+        this.amount = amount;
         this.client_id = client_id;
         this.ps_id = ps_id;
         this.descricao = descricao;
     }
 
-    public Os(int id, String number, int user_id, Date date, int client_id, int ps_id, String descricao) {
+    public Os(int id, String number, int user_id, String date, Double amount, int client_id, int ps_id, String descricao) {
         this.id = id;
         this.number = number;
         this.user_id = user_id;
         this.date = date;
+        this.amount = amount;
         this.client_id = client_id;
         this.ps_id = ps_id;
         this.descricao = descricao;
@@ -59,12 +61,20 @@ public class Os {
         this.user_id = user_id;
     }
 
-    public Date getData() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 
     public int getClient_id() {
@@ -94,13 +104,14 @@ public class Os {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 19 * hash + this.id;
-        hash = 19 * hash + Objects.hashCode(this.number);
-        hash = 19 * hash + this.user_id;
-        hash = 19 * hash + Objects.hashCode(this.date);
-        hash = 19 * hash + this.client_id;
-        hash = 19 * hash + this.ps_id;
-        hash = 19 * hash + Objects.hashCode(this.descricao);
+        hash = 97 * hash + this.id;
+        hash = 97 * hash + Objects.hashCode(this.number);
+        hash = 97 * hash + this.user_id;
+        hash = 97 * hash + Objects.hashCode(this.date);
+        hash = 97 * hash + Objects.hashCode(this.amount);
+        hash = 97 * hash + this.client_id;
+        hash = 97 * hash + this.ps_id;
+        hash = 97 * hash + Objects.hashCode(this.descricao);
         return hash;
     }
 
@@ -131,10 +142,13 @@ public class Os {
         if (!Objects.equals(this.number, other.number)) {
             return false;
         }
+        if (!Objects.equals(this.date, other.date)) {
+            return false;
+        }
         if (!Objects.equals(this.descricao, other.descricao)) {
             return false;
         }
-        if (!Objects.equals(this.date, other.date)) {
+        if (!Objects.equals(this.amount, other.amount)) {
             return false;
         }
         return true;
@@ -142,6 +156,6 @@ public class Os {
 
     @Override
     public String toString() {
-        return "OS{" + "id=" + id + ", number=" + number + ", user_id=" + user_id + ", date=" + date + ", client_id=" + client_id + ", ps_id=" + ps_id + ", descricao=" + descricao + '}';
+        return "Os{" + "id=" + id + ", number=" + number + ", user_id=" + user_id + ", date=" + date + ", amount=" + amount + ", client_id=" + client_id + ", ps_id=" + ps_id + ", descricao=" + descricao + '}';
     }
 }
