@@ -92,6 +92,8 @@ public final class AddOs extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
         jPanel1 = new javax.swing.JPanel();
         searchClient = new javax.swing.JTextField();
         btnSearchClient = new javax.swing.JButton();
@@ -105,14 +107,21 @@ public final class AddOs extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         btnCadastro = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        inputTextData = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        inputTextDescricao = new javax.swing.JTextField();
         inputTextValor = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         inputTextNumber = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        inputTextDescricao = new javax.swing.JTextArea();
+        inputTextData = new javax.swing.JTextField();
 
+        jFormattedTextField1.setText("jFormattedTextField1");
+
+        jFormattedTextField2.setText("jFormattedTextField2");
+
+        setClosable(true);
+        setMaximizable(true);
         setTitle("Cadastro de O.S");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cliente"));
@@ -238,19 +247,7 @@ public final class AddOs extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Data");
 
-        inputTextData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputTextDataActionPerformed(evt);
-            }
-        });
-
         jLabel2.setText("Descrição");
-
-        inputTextDescricao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputTextDescricaoActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText("Valor");
 
@@ -262,6 +259,17 @@ public final class AddOs extends javax.swing.JInternalFrame {
             }
         });
 
+        inputTextDescricao.setColumns(20);
+        inputTextDescricao.setRows(5);
+        jScrollPane2.setViewportView(inputTextDescricao);
+
+        inputTextData.setText("  /  /   ");
+        inputTextData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputTextDataActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -269,29 +277,31 @@ public final class AddOs extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnCadastro))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(inputTextData)
-                                    .addComponent(inputTextValor))))
+                                    .addComponent(inputTextValor)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(inputTextData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnCadastro)))
                         .addGap(40, 40, 40))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(inputTextDescricao, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanel3Layout.createSequentialGroup()
                                     .addComponent(jLabel4)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(inputTextNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(inputTextNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 20, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -312,7 +322,7 @@ public final class AddOs extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputTextDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCadastro)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -341,14 +351,6 @@ public final class AddOs extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void inputTextDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTextDataActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputTextDataActionPerformed
-
-    private void inputTextDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTextDescricaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputTextDescricaoActionPerformed
 
     private void btnSearchClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchClientActionPerformed
         searchTableClients();
@@ -433,6 +435,10 @@ public final class AddOs extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputTextNumberActionPerformed
 
+    private void inputTextDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTextDataActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputTextDataActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastro;
@@ -440,9 +446,11 @@ public final class AddOs extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnSearchPs;
     private javax.swing.JTable clientsTable;
     private javax.swing.JTextField inputTextData;
-    private javax.swing.JTextField inputTextDescricao;
+    private javax.swing.JTextArea inputTextDescricao;
     private javax.swing.JTextField inputTextNumber;
     private javax.swing.JTextField inputTextValor;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -451,6 +459,7 @@ public final class AddOs extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable psTable;
     private javax.swing.JTextField searchClient;
