@@ -79,11 +79,11 @@ public class OsDao {
         connection.close();
     }
 
-    public List<Os> searchByName(String nome) throws SQLException {
+    public List<Os> searchByNumber(String number) throws SQLException {
         Connection connection = new connectionFactory().getConnection();
-        String sql = "select * from os where nome like ?";
+        String sql = "select * from os where number like ?";
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, "%" + nome + "%");
+        ps.setString(1, "%" + number + "%");
         ResultSet rs = ps.executeQuery();
         ArrayList<Os> osList = new ArrayList<>();
 

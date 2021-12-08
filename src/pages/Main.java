@@ -10,7 +10,9 @@ public class Main extends javax.swing.JFrame {
 
     private ClientDao clienteDao;
     private DisplayClients telaListar;
+    private DisplayPs telaListarPs;
     private User usuario;
+    private DisplayOs telaListarOs;
 
     public User getUsuario() {
         return usuario;
@@ -37,7 +39,7 @@ public class Main extends javax.swing.JFrame {
         menuCliente = new javax.swing.JMenu();
         menuCliente_cadastrar = new javax.swing.JMenuItem();
         menuCliente_Listar = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        menuPs = new javax.swing.JMenu();
         cadastrarPS = new javax.swing.JMenuItem();
         listarPS = new javax.swing.JMenuItem();
         menuOs = new javax.swing.JMenu();
@@ -90,7 +92,7 @@ public class Main extends javax.swing.JFrame {
 
         jMenuBar1.add(menuCliente);
 
-        jMenu1.setText("Prestadores de Serviço");
+        menuPs.setText("Prestadores de Serviço");
 
         cadastrarPS.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         cadastrarPS.setText("Cadastrar");
@@ -99,7 +101,7 @@ public class Main extends javax.swing.JFrame {
                 cadastrarPSActionPerformed(evt);
             }
         });
-        jMenu1.add(cadastrarPS);
+        menuPs.add(cadastrarPS);
 
         listarPS.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         listarPS.setText("Listar");
@@ -108,9 +110,9 @@ public class Main extends javax.swing.JFrame {
                 listarPSActionPerformed(evt);
             }
         });
-        jMenu1.add(listarPS);
+        menuPs.add(listarPS);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(menuPs);
 
         menuOs.setText("Ordens de Serviço");
 
@@ -125,6 +127,11 @@ public class Main extends javax.swing.JFrame {
 
         listarOs.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         listarOs.setText("Listar");
+        listarOs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listarOsActionPerformed(evt);
+            }
+        });
         menuOs.add(listarOs);
 
         jMenuBar1.add(menuOs);
@@ -192,7 +199,15 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastrarPSActionPerformed
 
     private void listarPSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarPSActionPerformed
-        // TODO add your handling code here:
+        DisplayPs telaListarPs;
+        try {
+            telaListarPs = new DisplayPs();
+            telaListarPs.setVisible(true);
+            desktop.add(telaListarPs);
+            this.telaListarPs = telaListarPs;
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_listarPSActionPerformed
 
     private void cadastrarOsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarOsActionPerformed
@@ -204,6 +219,18 @@ public class Main extends javax.swing.JFrame {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cadastrarOsActionPerformed
+
+    private void listarOsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarOsActionPerformed
+        DisplayOs telaListarOs;
+        try {
+            telaListarOs = new DisplayOs();
+            telaListarOs.setVisible(true);
+            desktop.add(telaListarOs);
+            this.telaListarOs = telaListarOs;
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_listarOsActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -243,7 +270,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem cadastrarOs;
     private javax.swing.JMenuItem cadastrarPS;
     private javax.swing.JDesktopPane desktop;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem listarOs;
     private javax.swing.JMenuItem listarPS;
@@ -251,6 +277,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuCliente_Listar;
     private javax.swing.JMenuItem menuCliente_cadastrar;
     private javax.swing.JMenu menuOs;
+    private javax.swing.JMenu menuPs;
     private javax.swing.JMenu menuRelatorios;
     private javax.swing.JMenuItem menuRelatorios_Vendas;
     // End of variables declaration//GEN-END:variables
