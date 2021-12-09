@@ -4,6 +4,8 @@ import java.sql.*;
 import dao.ClientDao;
 import entities.Client;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,7 +28,7 @@ public class DisplayClients extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         btnDelete = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
         searchBar = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
@@ -47,16 +49,9 @@ public class DisplayClients extends javax.swing.JInternalFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
@@ -82,7 +77,12 @@ public class DisplayClients extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Editar");
+        btnSave.setText("Salvar");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +106,7 @@ public class DisplayClients extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(btnSave)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDelete)))
                 .addContainerGap())
@@ -118,7 +118,7 @@ public class DisplayClients extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelete)
-                    .addComponent(jButton2)
+                    .addComponent(btnSave)
                     .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addContainerGap())
@@ -181,10 +181,36 @@ public class DisplayClients extends javax.swing.JInternalFrame {
         searchTable();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        int line = table.getSelectedRow();
+
+        if (line < 0) {
+            JOptionPane.showMessageDialog(null, "Selecione uma pessoa.", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        clientSelected = clients.get(line);
+
+        if (clientSelected != null) {
+            Client clientEdited = new Client(table.getValueAt(line, 0).toString(), table.getValueAt(line, 1).toString(), table.getValueAt(line, 2).toString(), table.getValueAt(line, 3).toString(), table.getValueAt(line, 4).toString(), Integer.parseInt(table.getValueAt(line, 5).toString()), table.getValueAt(line, 6).toString(), table.getValueAt(line, 7).toString(), table.getValueAt(line, 8).toString());
+
+            clientEdited.setId(this.clients.get(line).getId());
+
+            try {
+                clientDao.change(clientEdited);
+                JOptionPane.showMessageDialog(null, "Dados editados.");
+                atualizarLista();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Erro ao editar.", "Erro!", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnSave;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField searchBar;

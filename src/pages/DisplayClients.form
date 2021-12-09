@@ -43,7 +43,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnSave" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -59,7 +59,7 @@
               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnDelete" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSave" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="searchBar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -81,15 +81,15 @@
             <Property name="autoCreateRowSorter" type="boolean" value="true"/>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="9" rowCount="0">
-                <Column editable="false" title="Nome" type="java.lang.String"/>
-                <Column editable="false" title="CPF" type="java.lang.String"/>
-                <Column editable="false" title="Telefone" type="java.lang.String"/>
-                <Column editable="false" title="CEP" type="java.lang.String"/>
-                <Column editable="false" title="Rua" type="java.lang.String"/>
-                <Column editable="false" title="N&#xfa;mero" type="java.lang.Integer"/>
-                <Column editable="false" title="Bairro" type="java.lang.String"/>
-                <Column editable="false" title="Cidade" type="java.lang.String"/>
-                <Column editable="false" title="Estado" type="java.lang.String"/>
+                <Column editable="true" title="Nome" type="java.lang.String"/>
+                <Column editable="true" title="CPF" type="java.lang.String"/>
+                <Column editable="true" title="Telefone" type="java.lang.String"/>
+                <Column editable="true" title="CEP" type="java.lang.String"/>
+                <Column editable="true" title="Rua" type="java.lang.String"/>
+                <Column editable="true" title="N&#xfa;mero" type="java.lang.Integer"/>
+                <Column editable="true" title="Bairro" type="java.lang.String"/>
+                <Column editable="true" title="Cidade" type="java.lang.String"/>
+                <Column editable="true" title="Estado" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="autoResizeMode" type="int" value="0"/>
@@ -173,10 +173,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="btnSave">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Editar"/>
+        <Property name="text" type="java.lang.String" value="Salvar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="searchBar">
     </Component>

@@ -54,7 +54,7 @@ public class ClientDao {
 
     public void change(Client cliente) throws SQLException {
         Connection connection = new connectionFactory().getConnection();
-        String sql = "update clients set nome=?,cpf=?,telefone=?,cep=?,rua=?,numero=?,bairro=?,cidade=?,estado=?" + "where id=?";
+        String sql = "update clients set nome=?,cpf=?,telefone=?,cep=?,rua=?,numero=?,bairro=?,cidade=?,estado=? where id=?";
         PreparedStatement stmt = connection.prepareStatement(sql);
 
         stmt.setString(1, cliente.getNome());
@@ -66,8 +66,9 @@ public class ClientDao {
         stmt.setString(7, cliente.getBairro());
         stmt.setString(8, cliente.getCidade());
         stmt.setString(9, cliente.getEstado());
+        stmt.setInt(10, cliente.getId());
 
-        stmt.execute();
+        stmt.executeUpdate();
         stmt.close();
         connection.close();
     }

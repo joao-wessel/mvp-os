@@ -263,7 +263,6 @@ public final class AddOs extends javax.swing.JInternalFrame {
         inputTextDescricao.setRows(5);
         jScrollPane2.setViewportView(inputTextDescricao);
 
-        inputTextData.setText("  /  /   ");
         inputTextData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputTextDataActionPerformed(evt);
