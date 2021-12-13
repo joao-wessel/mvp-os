@@ -53,7 +53,7 @@ public class PsDao {
 
     public void change(Ps ps) throws SQLException {
         Connection connection = new connectionFactory().getConnection();
-        String sql = "update ps set nome=?,cpf=?,telefone=?,cep=?,rua=?,numero=?,bairro=?,cidade=?,estado=?" + "where id=?";
+        String sql = "update ps set nome=?,cpf=?,telefone=?,cep=?,rua=?,numero=?,bairro=?,cidade=?,estado=? where id=?";
         PreparedStatement stmt = connection.prepareStatement(sql);
 
         stmt.setString(1, ps.getNome());
@@ -65,8 +65,9 @@ public class PsDao {
         stmt.setString(7, ps.getBairro());
         stmt.setString(8, ps.getCidade());
         stmt.setString(9, ps.getEstado());
+        stmt.setInt(10, ps.getId());
 
-        stmt.execute();
+        stmt.executeUpdate();
         stmt.close();
         connection.close();
     }

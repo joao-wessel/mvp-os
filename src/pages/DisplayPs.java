@@ -54,9 +54,10 @@ public class DisplayPs extends javax.swing.JInternalFrame {
         searchField = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSalvarPs = new javax.swing.JButton();
 
         setClosable(true);
+        setIconifiable(true);
         setMaximizable(true);
         setTitle("Prestadores de Serviço");
 
@@ -72,16 +73,9 @@ public class DisplayPs extends javax.swing.JInternalFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         tablePs.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
@@ -112,7 +106,12 @@ public class DisplayPs extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Editar");
+        btnSalvarPs.setText("Salvar");
+        btnSalvarPs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarPsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,7 +128,7 @@ public class DisplayPs extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSearch)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(btnSalvarPs)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDelete)))
                 .addContainerGap())
@@ -143,7 +142,7 @@ public class DisplayPs extends javax.swing.JInternalFrame {
                     .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch)
                     .addComponent(btnDelete)
-                    .addComponent(jButton2))
+                    .addComponent(btnSalvarPs))
                 .addGap(0, 6, Short.MAX_VALUE))
         );
 
@@ -177,11 +176,37 @@ public class DisplayPs extends javax.swing.JInternalFrame {
         searchTablePs();
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    private void btnSalvarPsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPsActionPerformed
+        int line = tablePs.getSelectedRow();
+
+        if (line < 0) {
+            JOptionPane.showMessageDialog(null, "Selecione um Prestador de Serviço.", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        psSelected = psList.get(line);
+
+        if (psSelected != null) {
+            Ps psEdited = new Ps(tablePs.getValueAt(line, 0).toString(), tablePs.getValueAt(line, 1).toString(), tablePs.getValueAt(line, 2).toString(), tablePs.getValueAt(line, 3).toString(), tablePs.getValueAt(line, 4).toString(), Integer.parseInt(tablePs.getValueAt(line, 5).toString()), tablePs.getValueAt(line, 6).toString(), tablePs.getValueAt(line, 7).toString(), tablePs.getValueAt(line, 8).toString());
+
+            psEdited.setId(this.psList.get(line).getId());
+
+            try {
+                psDao.change(psEdited);
+                JOptionPane.showMessageDialog(null, "Dados editados.");
+                atualizarLista();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Erro ao editar.", "Erro!", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnSalvarPsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnSalvarPs;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField searchField;
     private javax.swing.JTable tablePs;

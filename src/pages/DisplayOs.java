@@ -52,10 +52,13 @@ public final class DisplayOs extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableOs = new javax.swing.JTable();
         btnDelete = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSaveOs = new javax.swing.JButton();
         searchOs = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
         setTitle("Ordens de Serviço");
 
         tableOs.setAutoCreateRowSorter(true);
@@ -70,16 +73,9 @@ public final class DisplayOs extends javax.swing.JInternalFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         tableOs.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
@@ -103,7 +99,12 @@ public final class DisplayOs extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Editar");
+        btnSaveOs.setText("Salvar");
+        btnSaveOs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveOsActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Buscar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -125,7 +126,7 @@ public final class DisplayOs extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(btnSaveOs)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDelete)))
                 .addContainerGap())
@@ -137,7 +138,7 @@ public final class DisplayOs extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelete)
-                    .addComponent(jButton2)
+                    .addComponent(btnSaveOs)
                     .addComponent(searchOs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3))
                 .addGap(0, 6, Short.MAX_VALUE))
@@ -173,10 +174,36 @@ public final class DisplayOs extends javax.swing.JInternalFrame {
         searchTablePs();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void btnSaveOsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveOsActionPerformed
+        int line = tableOs.getSelectedRow();
+
+        if (line < 0) {
+            JOptionPane.showMessageDialog(null, "Selecione uma Ordem.", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        osSelected = osList.get(line);
+
+        if (osSelected != null) {
+            Os osEdited = new Os(tableOs.getValueAt(line, 0).toString(), Integer.parseInt(tableOs.getValueAt(line, 1).toString()), tableOs.getValueAt(line, 2).toString(), Double.parseDouble(tableOs.getValueAt(line, 3).toString()), Integer.parseInt(tableOs.getValueAt(line, 4).toString()), Integer.parseInt(tableOs.getValueAt(line, 5).toString()), tableOs.getValueAt(line, 6).toString());
+
+            osEdited.setId(this.osList.get(line).getId());
+
+            try {
+                osDao.change(osEdited);
+                JOptionPane.showMessageDialog(null, "Dados editados.");
+                atualizarLista();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Erro ao editar.", "Erro!", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnSaveOsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnSaveOs;
     private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField searchOs;

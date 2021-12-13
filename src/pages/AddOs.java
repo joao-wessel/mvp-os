@@ -121,6 +121,7 @@ public final class AddOs extends javax.swing.JInternalFrame {
         jFormattedTextField2.setText("jFormattedTextField2");
 
         setClosable(true);
+        setIconifiable(true);
         setMaximizable(true);
         setTitle("Cadastro de O.S");
 
@@ -286,7 +287,7 @@ public final class AddOs extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(inputTextValor)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(inputTextData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(inputTextData, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)

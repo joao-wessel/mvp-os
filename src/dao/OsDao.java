@@ -61,8 +61,9 @@ public class OsDao {
         stmt.setInt(5, os.getClient_id());
         stmt.setInt(6, os.getPs_id());
         stmt.setString(7, os.getDescricao());
+        stmt.setInt(8, os.getId());
 
-        stmt.execute();
+        stmt.executeUpdate();
         stmt.close();
         connection.close();
     }
