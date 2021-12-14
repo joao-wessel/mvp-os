@@ -20,25 +20,25 @@ public class AddPs extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        inputTxtRua = new javax.swing.JTextField();
         inputTxtEstado = new javax.swing.JTextField();
+        inputTxtBairro = new javax.swing.JTextField();
+        inputTxtNumero = new javax.swing.JTextField();
+        inputTxtCep = new javax.swing.JTextField();
+        inputTextTelefone = new javax.swing.JTextField();
+        inputTextCpf = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        inputTextCidade = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        btnCadastro = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        inputTxtName = new javax.swing.JTextField();
-        inputTxtCidade = new javax.swing.JTextField();
-        inputTxtNumero = new javax.swing.JTextField();
-        inputTxtRua = new javax.swing.JTextField();
-        inputTxtCep = new javax.swing.JTextField();
-        inputTxtTelefone = new javax.swing.JTextField();
-        inputTxtCpf = new javax.swing.JTextField();
-        inputTxtBairro = new javax.swing.JTextField();
-        buttonCadastrar = new javax.swing.JButton();
+        inputTxtNome = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -47,43 +47,52 @@ public class AddPs extends javax.swing.JInternalFrame {
         setInheritsPopupMenu(true);
         setVisible(true);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Nome");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Telefone");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Cpf");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Rua");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("Cep");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel6.setText("Numero");
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setText("Bairro");
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel8.setText("Estado");
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel9.setText("Cidade");
-
-        inputTxtName.addActionListener(new java.awt.event.ActionListener() {
+        inputTxtEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputTxtNameActionPerformed(evt);
+                inputTxtEstadoActionPerformed(evt);
             }
         });
 
-        buttonCadastrar.setText("Cadastrar");
-        buttonCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        inputTxtCep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCadastrarActionPerformed(evt);
+                inputTxtCepActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Nome");
+
+        inputTextCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputTextCidadeActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Estado");
+
+        jLabel10.setText("Cidade");
+
+        jLabel3.setText("Bairro");
+
+        btnCadastro.setText("Cadastrar");
+        btnCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastroActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Rua");
+
+        jLabel5.setText("Número");
+
+        jLabel6.setText("CEP");
+
+        jLabel8.setText("Telefone");
+
+        jLabel9.setText("CPF");
+
+        inputTxtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputTxtNomeActionPerformed(evt);
             }
         });
 
@@ -92,101 +101,103 @@ public class AddPs extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
+                .addGap(120, 120, 120)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(inputTxtBairro)
-                            .addComponent(inputTxtTelefone, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inputTxtRua, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addComponent(jLabel5))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel9)))
+                        .addComponent(inputTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(inputTxtNumero)
-                            .addComponent(inputTxtCep)
-                            .addComponent(inputTxtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(inputTxtCpf)
-                    .addComponent(inputTxtName)
-                    .addComponent(inputTxtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonCadastrar)
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(inputTextCpf))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(inputTextTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(inputTxtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(inputTxtRua))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(inputTxtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(inputTxtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(inputTextCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(inputTxtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(inputTxtName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(inputTxtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(inputTxtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputTxtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(inputTxtRua, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputTxtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(inputTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(inputTextCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(inputTxtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(inputTxtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(inputTxtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonCadastrar)
-                        .addGap(84, 84, 84))))
+                    .addComponent(jLabel8)
+                    .addComponent(inputTextTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(inputTxtCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(inputTxtRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(inputTxtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(inputTxtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(inputTextCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(inputTxtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCadastro))
+                .addContainerGap(232, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void inputTxtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTxtNameActionPerformed
+    private void inputTxtEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTxtEstadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_inputTxtNameActionPerformed
+    }//GEN-LAST:event_inputTxtEstadoActionPerformed
 
-    private void buttonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarActionPerformed
-        String nome = inputTxtName.getText();
-        String cpf = inputTxtCpf.getText();
-        String telefone = inputTxtTelefone.getText();
+    private void inputTxtCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTxtCepActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputTxtCepActionPerformed
+
+    private void inputTextCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTextCidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputTextCidadeActionPerformed
+
+    private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
+        String nome = inputTxtNome.getText();
+        String cpf = inputTextCpf.getText();
+        String telefone = inputTextTelefone.getText();
         String cep = inputTxtCep.getText();
         String estado = inputTxtEstado.getText();
         String rua = inputTxtRua.getText();
         String bairro = inputTxtBairro.getText();
-        String cidade = inputTxtCidade.getText();
+        String cidade = inputTextCidade.getText();
         int numero = Integer.parseInt(inputTxtNumero.getText());
 
         try {
@@ -241,15 +252,15 @@ public class AddPs extends javax.swing.JInternalFrame {
             try {
                 psDao.create(ps);
                 JOptionPane.showMessageDialog(null, "Dados cadastrados.");
-                inputTxtName.setText("");
-                inputTxtCpf.setText("");
-                inputTxtTelefone.setText("");
+                inputTxtNome.setText("");
+                inputTextCpf.setText("");
+                inputTextTelefone.setText("");
                 inputTxtCep.setText("");
                 inputTxtEstado.setText("");
                 inputTxtRua.setText("");
                 inputTxtNumero.setText("");
                 inputTxtBairro.setText("");
-                inputTxtCidade.setText("");
+                inputTextCidade.setText("");
             } catch (SQLException ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Erro ao cadastrar.", "Erro!", JOptionPane.ERROR_MESSAGE);
@@ -266,27 +277,31 @@ public class AddPs extends javax.swing.JInternalFrame {
             psSelected.setCidade(cidade);
         }
         psSelected = null;
-    }//GEN-LAST:event_buttonCadastrarActionPerformed
+    }//GEN-LAST:event_btnCadastroActionPerformed
+
+    private void inputTxtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTxtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputTxtNomeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonCadastrar;
+    private javax.swing.JButton btnCadastro;
+    private javax.swing.JTextField inputTextCidade;
+    private javax.swing.JTextField inputTextCpf;
+    private javax.swing.JTextField inputTextTelefone;
     private javax.swing.JTextField inputTxtBairro;
     private javax.swing.JTextField inputTxtCep;
-    private javax.swing.JTextField inputTxtCidade;
-    private javax.swing.JTextField inputTxtCpf;
     private javax.swing.JTextField inputTxtEstado;
-    private javax.swing.JTextField inputTxtName;
+    private javax.swing.JTextField inputTxtNome;
     private javax.swing.JTextField inputTxtNumero;
     private javax.swing.JTextField inputTxtRua;
-    private javax.swing.JTextField inputTxtTelefone;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
