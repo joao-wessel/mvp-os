@@ -11,8 +11,9 @@ public class Main extends javax.swing.JFrame {
     private ClientDao clienteDao;
     private DisplayClients telaListar;
     private DisplayPs telaListarPs;
-    private User usuario;
     private DisplayOs telaListarOs;
+    private OsRecord relatorioOs;
+    private User usuario;
 
     public User getUsuario() {
         return usuario;
@@ -138,8 +139,8 @@ public class Main extends javax.swing.JFrame {
 
         menuRelatorios.setText("Relatórios");
 
-        menuRelatorios_Vendas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
-        menuRelatorios_Vendas.setText("Vendas");
+        menuRelatorios_Vendas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuRelatorios_Vendas.setText("Ordens de Serviço");
         menuRelatorios_Vendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuRelatorios_VendasActionPerformed(evt);
@@ -171,7 +172,15 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_menuClienteActionPerformed
 
     private void menuRelatorios_VendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelatorios_VendasActionPerformed
-        // TODO add your handling code here:
+        try {
+            OsRecord relatorioOs;
+            relatorioOs = new OsRecord();
+            relatorioOs.setVisible(true);
+            desktop.add(relatorioOs);
+            this.relatorioOs = relatorioOs;
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_menuRelatorios_VendasActionPerformed
 
     private void menuCliente_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCliente_cadastrarActionPerformed

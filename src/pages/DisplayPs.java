@@ -202,7 +202,6 @@ public class DisplayPs extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnSalvarPsActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSalvarPs;

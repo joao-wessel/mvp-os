@@ -4,8 +4,6 @@ import java.sql.*;
 import dao.ClientDao;
 import entities.Client;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
